@@ -16,9 +16,10 @@ interface Question {
 interface QuizProps {
   lessonNumber: number;
   questions: Question[];
+  onComplete?: () => void;
 }
 
-const Quiz = ({ lessonNumber, questions }: QuizProps) => {
+const Quiz = ({ lessonNumber, questions, onComplete }: QuizProps) => {
   const [answers, setAnswers] = useState<{ [key: number]: number }>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
@@ -34,9 +35,13 @@ const Quiz = ({ lessonNumber, questions }: QuizProps) => {
     setSubmitted(true);
     
     if (correct === questions.length) {
-      toast.success("Parabéns! Você acertou todas as questões!");
+      toast.success("Parabéns! Você acertou todas as questões! Próxima aula desbloqueada!");
+      // Marca a aula como completa e desbloqueia a próxima
+      if (onComplete) {
+        onComplete();
+      }
     } else {
-      toast.info(`Você acertou ${correct} de ${questions.length} questões.`);
+      toast.error(`Você acertou apenas ${correct} de ${questions.length} questões. Precisa acertar todas para desbloquear a próxima aula.`);
     }
   };
 

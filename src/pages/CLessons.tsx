@@ -1,15 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import LessonCard from "@/components/LessonCard";
 import Quiz from "@/components/Quiz";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const CLessons = () => {
   const [activeLesson, setActiveLesson] = useState(1);
+  const [completedLessons, setCompletedLessons] = useState<number[]>([]);
+
+  // Carrega o progresso salvo ao montar o componente
+  useEffect(() => {
+    const saved = localStorage.getItem("c-course-progress");
+    if (saved) {
+      setCompletedLessons(JSON.parse(saved));
+    }
+  }, []);
+
+  // Salva o progresso sempre que mudar
+  useEffect(() => {
+    localStorage.setItem("c-course-progress", JSON.stringify(completedLessons));
+  }, [completedLessons]);
+
+  // Verifica se uma aula está bloqueada
+  const isLessonLocked = (lessonNumber: number) => {
+    if (lessonNumber === 1) return false; // Primeira aula sempre desbloqueada
+    return !completedLessons.includes(lessonNumber - 1); // Bloqueada se a anterior não foi completa
+  };
+
+  // Marca aula como completa quando acertar o quiz
+  const handleLessonComplete = (lessonNumber: number) => {
+    if (!completedLessons.includes(lessonNumber)) {
+      setCompletedLessons([...completedLessons, lessonNumber]);
+    }
+  };
+
+  // Tenta acessar uma aula
+  const handleLessonClick = (lessonNumber: number) => {
+    if (!isLessonLocked(lessonNumber)) {
+      setActiveLesson(lessonNumber);
+    }
+  };
 
   const lessons = [
     {
@@ -194,8 +229,10 @@ const CLessons = () => {
                     number={lesson.number}
                     title={lesson.title}
                     duration={lesson.duration}
-                    onClick={() => setActiveLesson(lesson.number)}
+                    onClick={() => handleLessonClick(lesson.number)}
                     isActive={activeLesson === lesson.number}
+                    completed={completedLessons.includes(lesson.number)}
+                    locked={isLessonLocked(lesson.number)}
                   />
                 ))}
               </CardContent>
@@ -204,6 +241,16 @@ const CLessons = () => {
 
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
+            {/* Alerta de progresso */}
+            {!completedLessons.includes(activeLesson) && activeLesson > 1 && (
+              <Alert>
+                <AlertCircle className="h-4 w-4" />
+                <AlertDescription>
+                  Complete o quiz desta aula para desbloquear a próxima!
+                </AlertDescription>
+              </Alert>
+            )}
+
             {/* Video Player */}
             <Card>
               <CardHeader>
@@ -254,6 +301,7 @@ const CLessons = () => {
             <Quiz
               lessonNumber={activeLesson}
               questions={quizzes[activeLesson as keyof typeof quizzes]}
+              onComplete={() => handleLessonComplete(activeLesson)}
             />
           </div>
         </div>
