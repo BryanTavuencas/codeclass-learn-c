@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const CLessons = () => {
-  const [activeLesson, setActiveLesson] = useState(1);
+  const [activeLesson, setActiveLesson] = useState(0);
   const [completedLessons, setCompletedLessons] = useState<number[]>([]);
 
   // Carrega o progresso salvo ao montar o componente
@@ -28,7 +28,7 @@ const CLessons = () => {
 
   // Verifica se uma aula está bloqueada
   const isLessonLocked = (lessonNumber: number) => {
-    if (lessonNumber === 1) return false; // Primeira aula sempre desbloqueada
+    if (lessonNumber === 0) return false; // Primeira aula (aula 0) sempre desbloqueada
     return !completedLessons.includes(lessonNumber - 1); // Bloqueada se a anterior não foi completa
   };
 
@@ -71,11 +71,17 @@ const CLessons = () => {
       duration: "14:28 min",
       videoId: "AX2hGIqP-P8", 
     },
-      {
+    {
       number: 4,
       title: "Aula 4 - Vetores",
       duration: "14:28 min",
       videoId: "duX-NUyJhTA", 
+    },
+    {
+      number: 5,
+      title: "Aula 5 - Matrizes",
+      duration: "15:00 min",
+      videoId: "ADICIONE_O_ID_DA_AULA_5", 
     },
   ];
 
@@ -169,25 +175,50 @@ const CLessons = () => {
     4: [
       {
         id: 1,
-        question: "O que é um ponteiro em C?",
+        question: "O que é um vetor em C?",
         options: [
-          "Um tipo de dado",
-          "Uma variável que armazena endereço de memória",
+          "Uma variável única",
+          "Uma coleção de elementos do mesmo tipo",
           "Uma função",
-          "Um operador"
+          "Um ponteiro"
         ],
         correctAnswer: 1,
       },
       {
         id: 2,
-        question: "Qual operador é usado para obter o endereço de uma variável?",
-        options: ["*", "&", "#", "@"],
+        question: "Como se acessa o primeiro elemento de um vetor?",
+        options: ["vetor[1]", "vetor[0]", "vetor.first", "vetor(0)"],
         correctAnswer: 1,
       },
       {
         id: 3,
-        question: "Qual função é usada para alocar memória dinamicamente?",
-        options: ["alloc()", "malloc()", "memory()", "new()"],
+        question: "Qual é o índice do último elemento de um vetor de tamanho 10?",
+        options: ["10", "9", "11", "0"],
+        correctAnswer: 1,
+      },
+    ],
+    5: [
+      {
+        id: 1,
+        question: "O que é uma matriz em C?",
+        options: [
+          "Um vetor unidimensional",
+          "Um vetor de vetores (array bidimensional)",
+          "Uma string",
+          "Um ponteiro"
+        ],
+        correctAnswer: 1,
+      },
+      {
+        id: 2,
+        question: "Como se declara uma matriz 3x3 em C?",
+        options: ["int matriz[3,3]", "int matriz[3][3]", "int matriz(3,3)", "int matriz{3}{3}"],
+        correctAnswer: 1,
+      },
+      {
+        id: 3,
+        question: "Como acessar o elemento na linha 2, coluna 3 de uma matriz?",
+        options: ["matriz[2,3]", "matriz[1][2]", "matriz(2,3)", "matriz[2-3]"],
         correctAnswer: 1,
       },
     ],
@@ -219,7 +250,7 @@ const CLessons = () => {
             <Card>
               <CardHeader>
                 <CardTitle>Aulas do Curso</CardTitle>
-                <CardDescription>5 aulas • 3h de conteúdo</CardDescription>
+                <CardDescription>6 aulas • 3h30 de conteúdo</CardDescription>
               </CardHeader>
               <CardContent className="space-y-2">
                 {lessons.map((lesson) => (
@@ -241,7 +272,7 @@ const CLessons = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Alerta de progresso */}
-            {!completedLessons.includes(activeLesson) && activeLesson > 1 && (
+            {!completedLessons.includes(activeLesson) && activeLesson >= 0 && (
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
