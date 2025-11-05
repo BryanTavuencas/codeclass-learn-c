@@ -57,25 +57,24 @@ const CLessons = () => {
       number: 2,
       title: "Variáveis e Tipos de Dados",
       duration: "30 min",
-      videoId: "COLOQUE_O_ID_DO_VIDEO_AQUI_2", // Substitua pelo ID do vídeo do YouTube
+      videoId: "-TV_m4Vihfg", 
     },
     {
       number: 3,
       title: "Estruturas de Controle",
       duration: "35 min",
-      videoId: "COLOQUE_O_ID_DO_VIDEO_AQUI_3", // Substitua pelo ID do vídeo do YouTube
+      videoId: "Ktj1gdtUZqI", 
     },
     {
       number: 4,
       title: "Funções e Modularização",
       duration: "40 min",
-      videoId: "COLOQUE_O_ID_DO_VIDEO_AQUI_4", // Substitua pelo ID do vídeo do YouTube
-    },
+      videoId: "AX2hGIqP-P8", 
     {
       number: 5,
       title: "Ponteiros e Alocação de Memória",
       duration: "45 min",
-      videoId: "COLOQUE_O_ID_DO_VIDEO_AQUI_5", // Substitua pelo ID do vídeo do YouTube
+      videoId: "duX-NUyJhTA", 
     },
   ];
 
