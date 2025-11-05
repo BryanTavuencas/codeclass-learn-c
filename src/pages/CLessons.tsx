@@ -191,8 +191,7 @@ const CLessons = () => {
         correctAnswer: 1,
       },
     ],
-  };
-
+};
   const currentLesson = lessons.find((l) => l.number === activeLesson);
 
   return (
