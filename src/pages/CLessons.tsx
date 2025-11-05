@@ -81,7 +81,7 @@ const CLessons = () => {
 
   // Quiz questions for each lesson
   const quizzes = {
-    1: [
+    0: [
       {
         id: 1,
         question: "O que é o foco desta aula?",
@@ -101,7 +101,7 @@ const CLessons = () => {
         correctAnswer: 1,
       },
     ],
-    2: [
+    1: [
       {
         id: 1,
         question: "Qual é o tipo de dado para números inteiros em C?",
@@ -121,7 +121,7 @@ const CLessons = () => {
         correctAnswer: 1,
       },
     ],
-    3: [
+    2: [
       {
         id: 1,
         question: "Qual estrutura é usada para tomar decisões em C?",
@@ -146,7 +146,7 @@ const CLessons = () => {
         correctAnswer: 1,
       },
     ],
-    4: [
+    3: [
       {
         id: 1,
         question: "O que uma função retorna quando não tem tipo especificado?",
@@ -166,7 +166,7 @@ const CLessons = () => {
         correctAnswer: 1,
       },
     ],
-    5: [
+    4: [
       {
         id: 1,
         question: "O que é um ponteiro em C?",
