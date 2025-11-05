@@ -51,7 +51,7 @@ const CLessons = () => {
       number: 1,
       title: "Introdução à Linguagem C",
       duration: "25 min",
-      videoId: "COLOQUE_O_ID_DO_VIDEO_AQUI_1", // Substitua pelo ID do vídeo do YouTube
+      videoId: "2fzL6tC5FUk", // Substitua pelo ID do vídeo do YouTube
     },
     {
       number: 2,
