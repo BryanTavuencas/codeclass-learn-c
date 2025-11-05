@@ -48,32 +48,33 @@ const CLessons = () => {
 
   const lessons = [
     {
-      number: 1,
-      title: "Introdução à Linguagem C",
-      duration: "25 min",
-      videoId: "2fzL6tC5FUk", // Substitua pelo ID do vídeo do YouTube
+      number: 0,
+      title: "Aula 0 - Baixando a IDE e criando um Arquivo",
+      duration: "03:32 min",
+      videoId: "2fzL6tC5FUk", 
     },
     {
-      number: 2,
-      title: "Variáveis e Tipos de Dados",
-      duration: "30 min",
+      number: 1,
+      title: "Aula 1 - Estrutura e Comandos Básicos e Variáveis",
+      duration: "17:37 min",
       videoId: "-TV_m4Vihfg", 
     },
     {
-      number: 3,
-      title: "Estruturas de Controle",
-      duration: "35 min",
+      number: 2,
+      title: "Aula 2 - Estruturas de decisão If e Else",
+      duration: "10:52 min",
       videoId: "Ktj1gdtUZqI", 
     },
     {
-      number: 4,
-      title: "Funções e Modularização",
-      duration: "40 min",
+      number: 3,
+      title: "Aula 3 - Estruturas de Repetição",
+      duration: "14:28 min",
       videoId: "AX2hGIqP-P8", 
-    {
-      number: 5,
-      title: "Ponteiros e Alocação de Memória",
-      duration: "45 min",
+    },
+      {
+      number: 4,
+      title: "Aula 4 - Vetores",
+      duration: "14:28 min",
       videoId: "duX-NUyJhTA", 
     },
   ];
@@ -83,8 +84,8 @@ const CLessons = () => {
     1: [
       {
         id: 1,
-        question: "Qual é a função principal de um programa em C?",
-        options: ["start()", "main()", "begin()", "run()"],
+        question: "O que é o foco desta aula?",
+        options: ["Instalar a IDE e criar o primeiro arquivo", "Escrever algoritmos complexos", "Configurar servidor web", "run()"],
         correctAnswer: 1,
       },
       {
